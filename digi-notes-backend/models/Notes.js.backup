@@ -1,0 +1,61 @@
+const pool = require('../config/db');
+
+class Note {
+  static async create({ title, content, color, userId }) {
+    const [result] = await pool.execute(
+      'INSERT INTO notes (title, content, color, user_id) VALUES (?, ?, ?, ?)',
+      [title, content, color, userId]
+    );
+    return this.findById(result.insertId);
+  }
+
+  static async findById(id) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM notes WHERE id = ?',
+      [id]
+    );
+    return rows[0];
+  }
+
+  static async findByUser(userId) {
+    const [rows] = await pool.execute(
+      'SELECT * FROM notes WHERE user_id = ? ORDER BY is_pinned DESC, last_edited DESC',
+      [userId]
+    );
+    return rows;
+  }
+
+  static async update(id, updates) {
+    const fields = Object.keys(updates).map(key => `${key} = ?`).join(', ');
+    const values = Object.values(updates);
+    values.push(id);
+    
+    await pool.execute(
+      `UPDATE notes SET ${fields} WHERE id = ?`,
+      values
+    );
+    return this.findById(id);
+  }
+
+  static async delete(id) {
+    await pool.execute('DELETE FROM notes WHERE id = ?', [id]);
+  }
+
+  static async togglePin(id) {
+    await pool.execute(
+      'UPDATE notes SET is_pinned = NOT is_pinned WHERE id = ?',
+      [id]
+    );
+    return this.findById(id);
+  }
+
+  static async toggleArchive(id) {
+    await pool.execute(
+      'UPDATE notes SET is_archived = NOT is_archived WHERE id = ?',
+      [id]
+    );
+    return this.findById(id);
+  }
+}
+
+module.exports = Note;
