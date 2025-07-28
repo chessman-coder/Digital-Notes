@@ -33,7 +33,7 @@ Before running this application, make sure you have:
 
 ```bash
 git clone <repository-url>
-cd digital-journal
+cd Digital-Notes
 ```
 
 ### 2. Backend Setup
@@ -61,21 +61,14 @@ DB_NAME=digi_notes
 JWT_SECRET=your-super-secret-jwt-key-here-change-this-in-production
 JWT_EXPIRES_IN=7d
 
-FRONTEND_URL=http://localhost:5173
-PORT=5000
-```
-
-#### Initialize Database
-Run the database initialization script:
-```bash
-mysql -u root -p digi_notes < scripts/init-db.sql
+FRONTEND_URL=http://localhost:8080
 ```
 
 #### Start Backend Server
 ```bash
 npm run dev
 ```
-The backend will run on `http://localhost:5000`
+The backend will run on `http://localhost:3001`
 
 ### 3. Frontend Setup
 
@@ -93,16 +86,15 @@ cp .env.example .env
 
 2. Update `.env` file:
 ```env
-VITE_API_URL=http://localhost:5000/api
-VITE_APP_NAME=Digital Journal
-VITE_APP_VERSION=1.0.0
+VITE_API_URL=http://localhost:3001/api
+
 ```
 
 #### Start Frontend Development Server
 ```bash
 npm run dev
 ```
-The frontend will run on `http://localhost:5173`
+The frontend will run on `http://localhost:8080`
 
 ## 🗄️ Database Schema
 
