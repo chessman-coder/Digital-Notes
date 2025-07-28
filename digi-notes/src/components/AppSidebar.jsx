@@ -67,7 +67,7 @@ export const AppSidebar = ({
   };
 
   return (
-    <div className="bg-white/80 backdrop-blur-sm border-r border-white/20 w-64 h-screen flex flex-col fixed left-0 top-0 z-10">
+    <div className="bg-white/80 backdrop-blur-sm border-r border-white/20 w-64 h-screen flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-white/20 flex-shrink-0">
         <h2 className="font-semibold text-slate-800">Navigation</h2>

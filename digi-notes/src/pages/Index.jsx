@@ -241,7 +241,7 @@ const Index = () => {
   // Show main journal interface after authentication
   return (
     <>
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-green-50">
+      <div className="h-screen flex w-full bg-gradient-to-br from-slate-50 via-blue-50 to-green-50">
         <AppSidebar
           folders={folders}
           selectedFolder={selectedFolder}
@@ -254,7 +254,7 @@ const Index = () => {
           onDeleteFolder={deleteFolder}
         />
         
-        <div className="ml-64 flex flex-col min-h-screen">
+        <div className="flex-1 flex flex-col h-screen">
           {/* Header */}
           <div className="p-4 border-b border-white/20 bg-white/40 flex items-center gap-4">
             <h1 className="text-xl font-bold text-slate-800 flex items-center gap-2">
@@ -287,7 +287,7 @@ const Index = () => {
               </div>
             )}
   
-            <div className="flex flex-col md:flex-row flex-1 h-full">
+            <div className="flex flex-col md:flex-row flex-1 h-full overflow-hidden">
               {/* Notes List */}
               <div className={`${selectedNote && !isMobile ? 'w-1/3' : 'flex-1'} bg-white/60 backdrop-blur-sm border-r border-white/20 flex flex-col h-full ${
                 selectedNote && isMobile ? 'hidden' : ''
@@ -340,7 +340,7 @@ const Index = () => {
                 </div>
   
                 {/* Notes Grid */}
-                <div className="flex-1 overflow-y-auto">
+                <div className="flex-1 overflow-y-auto min-h-0">
                   <NotesGrid
                     notes={filteredNotes}
                     selectedNote={selectedNote}
